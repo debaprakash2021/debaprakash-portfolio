@@ -1,13 +1,14 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ArrowDown, Github, Linkedin, Mail } from 'lucide-react';
-// Hero portrait is served from public/hero-portrait.jpg
+// Hero portrait is served from public/mr_jena.jpg
 
 export default function Hero() {
   const heroRef = useRef<HTMLElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
   const headlineRef = useRef<HTMLHeadingElement>(null);
+  const [imgSrc, setImgSrc] = useState('/mr_jena.jpg');
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -241,8 +242,11 @@ export default function Hero() {
           {/* Image container */}
           <div className="relative h-full overflow-hidden rounded-tl-[60px] lg:rounded-tl-[100px] border-l border-t border-white/10">
             <img
-              src="/hero-portrait.jpg"
-              alt="Debaprakash"
+              src={imgSrc}
+              alt="Profile"
+              onError={() => {
+                if (imgSrc !== '/mr_jena.jpg') setImgSrc('/mr_jena.jpg');
+              }}
               className="w-full h-full object-cover object-top"
             />
 

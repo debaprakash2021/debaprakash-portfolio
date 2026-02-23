@@ -191,8 +191,8 @@ export default function Skills() {
         <div className="mt-20 grid grid-cols-2 lg:grid-cols-4 gap-6">
           {[
             { value: '100+', label: 'DSA Problems Solved' },
-            { value: '3★', label: 'HackerRank Rating' },
-            { value: '7.9', label: 'Current CGPA' },
+            { value: '4★', label: 'HackerRank Rating' },
+            { value: '7.96', label: 'Current CGPA' },
             { value: '3+', label: 'Major Projects' },
           ].map((stat, index) => (
             <div
