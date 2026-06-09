@@ -1,11 +1,180 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ExternalLink, Github, ArrowUpRight } from 'lucide-react';
+import { ExternalLink, Github, ArrowUpRight, Info } from 'lucide-react';
+import ProjectModal, { type ProjectType } from '../components/ProjectModal';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const projects = [
+const projects: ProjectType[] = [
+  {
+    title: 'Hospital Management System',
+    subtitle: 'Full-Stack Web Application',
+    description:
+      'Full-stack hospital operations platform with patient records, appointments, billing, prescriptions, and real-time notifications — built with React, Node.js, MongoDB, and Socket.IO.',
+    longDescription:
+      'A comprehensive hospital operations platform covering patient records, doctor scheduling, appointment booking, billing, prescriptions, and real-time notifications — with four distinct role-based dashboards.\n\nThe architecture follows a clean monorepo split — client/ is a React 18 + Vite SPA using Redux Toolkit for state, and server/ is a modular Express 5 backend organized into 8 domain modules (auth, users, doctors, patients, appointments, billing, reports, prescriptions). The backend uses Socket.IO for real-time push events, Bull for background job queuing (email delivery), Multer for file uploads (up to 10 MB), Joi for request validation, and Nodemailer for automated email alerts.',
+    details: [
+      {
+        title: 'Key Features',
+        content: 'JWT Auth + RBAC: Token-based auth with 4 role tiers (Admin, Doctor, Patient, Receptionist).\nAppointment scheduling: Book, reschedule, cancel with live updates.\nReal-time notifications: Socket.IO live event push.\nBilling & invoicing: Generate and manage patient payments.\nPrescriptions: Create, update, and track Rx records.\nFile upload support: Medical docs, images up to 10 MB.',
+      },
+      {
+        title: 'Role-Based Access',
+        content: 'Admin: Full system access\nDoctor: Patients + Rx\nPatient: Records + bills\nReceptionist: Appointments + registration\n\nAll four roles get different scoped views and permissions enforced server-side via JWT middleware.',
+      },
+      {
+        title: 'REST API Endpoints (8 Modules)',
+        content: 'Auth & Users: /api/auth/login, /api/auth/register, /api/auth/me, /api/users\nDoctors & Patients: /api/doctors, /api/patients\nAppointments & Billing: /api/appointments, /api/billing\nPrescriptions & Reports: /api/prescriptions, /api/reports',
+      },
+      {
+        title: 'Architecture & Tech Stack',
+        content: 'Frontend: React 18, Vite 5, Redux Toolkit, React Router DOM v6, Axios.\nBackend: Node.js, Express 5, MongoDB + Mongoose 9, Socket.IO 4, JWT + Bcryptjs.\nSupporting Libraries: Joi, Multer, Nodemailer, Bull, dotenv, Nodemon, CORS.',
+      }
+    ],
+    image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
+    tech: [
+      'React 18',
+      'Node.js',
+      'Express 5',
+      'MongoDB',
+      'Socket.IO',
+      'Redux',
+      'Bull'
+    ],
+    github: 'https://github.com/debaprakash2021/hospital-management-system',
+    live: null,
+    featured: true,
+  },
+  {
+    title: 'AasaMedChem',
+    subtitle: 'Enterprise B2B MedChem Platform',
+    description:
+      'A full-stack pharmaceutical inventory and order management system with multi-role access, a custom unit conversion engine, real-time analytics, and global audit logging.',
+    longDescription:
+      'A production-grade, multi-role B2B pharmaceutical supply-chain platform built for the AasaMedChem Hackathon. Features a custom unit conversion engine for microgram-precision pricing, role-based access control across three user types, real-time analytics, and a global audit trail — all deployed serverlessly on Vercel with Neon PostgreSQL.\n\nThe standout feature is the UnitConversionService — a custom server-side engine that handles pharmaceutical precision math (kg → g → mg → L → mL) using PostgreSQL Decimal(19,6) to avoid floating-point errors. When a buyer orders 500g of a product priced at ₹1000/kg, it automatically normalizes the pricing and deducts the correct base quantity from inventory — all server-side to prevent manipulation.',
+    details: [
+      {
+        title: 'Key Features',
+        content: 'Multi-role RBAC: Admin / Seller / Buyer roles enforced at route, API, and DB layers via Next.js Edge middleware + JWT sessions.\nUnit conversion engine: Dynamic kg→g→mg→L→mL pricing. Decimal(19,6) precision prevents floating-point errors.\nAnalytics dashboard: Recharts Pie + Line charts for revenue breakdown and 30-day order velocity. Server-rendered real-time data.\nGlobal audit trail: Every inventory update, order placement, and status change is logged in AuditLog.\nSmart cart & checkout: Multi-seller cart auto-splits into separate quotations per seller. Real-time inventory checks prevent overselling.\nPDF invoices & CSV export: Print-ready A4 invoices via @media print CSS. Client-side CSV export.',
+      },
+      {
+        title: 'Project Stats & Tech Stack',
+        content: 'Stats: 46 TypeScript files, ~3,220 lines of code, 12 database models, 3 user roles.\nTech Stack: Next.js 16 (App Router), React 19, TypeScript 5, Prisma ORM v5, Neon PostgreSQL, NextAuth.js v4, Tailwind CSS v4, Recharts 3, bcryptjs, JWT (stateless), Vercel Server Actions.',
+      },
+      {
+        title: 'Database Schema Highlights',
+        content: 'User: id, email, password, role, status, sellerId\nProduct: sku, baseUnitId, basePrice Decimal(19,6), gstRate, supportedUnits\nConversionFactor: productId, fromUnit, toUnit, factor Decimal(19,6)\nQuotation: 6-stage workflow (SUBMITTED → REVIEWED → APPROVED → PAID → COMPLETED / REJECTED)\nConversionLog: Immutable per-item audit for financial auditability\nAuditLog: userId, action, resourceType, resourceId, changes, createdAt',
+      },
+      {
+        title: 'Architecture Flow',
+        content: 'React UI → Server Actions / API Routes → Edge Middleware (JWT/RBAC) → Prisma ORM → Neon PostgreSQL',
+      }
+    ],
+    image: 'https://images.unsplash.com/photo-1587854692152-cbe660dbde88?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
+    tech: [
+      'Next.js 16',
+      'React 19',
+      'TypeScript',
+      'Prisma ORM',
+      'Neon PostgreSQL',
+      'Tailwind CSS',
+      'NextAuth.js',
+      'Recharts'
+    ],
+    github: 'https://github.com/debaprakash2021/aasamedchem',
+    live: null,
+    featured: true,
+  },
+  {
+    title: 'EduSync',
+    subtitle: 'EdTech Platform Backend',
+    description:
+      'Production-grade Node.js backend for a full-scale EdTech platform, handling payments, live classes, quiz grading, subscriptions, real-time chat, and instructor earnings.',
+    longDescription:
+      'EduSync is a feature-complete EdTech backend built to support an online learning platform similar to Udemy or Teachable. It handles the full lifecycle of a course business — from student enrollment and learning progress tracking to instructor earnings, Razorpay payment processing, Agora-powered live classes, and automated invoice generation.\n\nThe backend is structured in a strict Routes → Controllers → Services → Models architecture with 18 route modules, 27 MongoDB models, and 19 dedicated service files, reflecting real enterprise-grade separation of concerns.',
+    details: [
+      {
+        title: 'Tech Stack',
+        content: 'Runtime: Node.js (ES Modules)\nFramework: Express.js v5\nDatabase: MongoDB + Mongoose v9\nReal-time: Socket.io v4.8\nAuthentication: JWT + bcrypt\nPayments: Razorpay (Orders API + Webhooks)\nLive Streaming: Agora RTC SDK\nFile Storage: Cloudinary + Multer\nPDF Generation: PDFKit\nScheduled Tasks: node-cron',
+      },
+      {
+        title: 'Architecture',
+        content: 'Total: 105 JavaScript files\nRoutes → Controllers → Services → Models pattern\n18 route modules, 27 Mongoose schemas, 19 service modules\nMiddleware: Auth, RBAC, rate limiting, validation, error handling\nSockets: Socket.io event handlers\nCron: Scheduled background jobs',
+      },
+      {
+        title: 'Core Features',
+        content: 'Authentication: Two-step OTP signup, JWT with rotation, RBAC\nCourse Management: Draft/Published lifecycle, MongoDB text search, 90% completion heuristic\nPayments & Earnings: Razorpay webhook verification, 70/30 revenue split, instructor withdrawals\nLive Classes: Agora server-side tokens, role-based joining\nQuiz Engine: Answer sanitization, auto-grading\nSecurity: Helmet, express-mongo-sanitize, hpp, 8 granular rate limiters',
+      },
+      {
+        title: 'Database Models (27 total)',
+        content: 'User, Course, Section, Lecture, Enrollment, WatchProgress, Quiz, QuizAttempt, Order, Earning, Withdrawal, Subscription, Plan, Coupon, CouponUsage, Invoice, LiveClass, OTP, RefreshToken, Artifact, Chat, Thread, Comment, Likes, Review, Bookmark, StudentNote',
+      }
+    ],
+    image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
+    tech: [
+      'Node.js',
+      'Express.js v5',
+      'MongoDB v9',
+      'Socket.io',
+      'Razorpay',
+      'Agora RTC',
+      'JWT Auth',
+      'PDFKit',
+      'node-cron'
+    ],
+    github: 'https://github.com/debaprakash2021/edusync-backend',
+    live: null,
+    featured: true,
+  },
+  {
+    title: 'RealEstate Platform',
+    subtitle: 'Full-Stack Property Booking System',
+    description:
+      'An Airbnb-style property rental platform with MERN stack. Features Razorpay payment integration with escrow, MongoDB geospatial search ($near queries), multi-image upload via Cloudinary, and a 3-role RBAC system.',
+    longDescription:
+      'RealEstate Platform is a full-stack property booking system modeled after Airbnb, built with the MERN stack (MongoDB, Express.js, React 18, Node.js). The backend follows a clean Controller → Service → Model architecture with a dedicated service layer for business logic. It implements JWT authentication with access + refresh token rotation, bcrypt password hashing (12 salt rounds), and email OTP verification via Nodemailer. A three-role RBAC system (guest, host, admin) gates every route on both the frontend and the API layer using custom auth and role middlewares. The property schema stores GeoJSON coordinates and uses a 2dsphere MongoDB index for proximity-based $near queries, rendered as an interactive map via React Leaflet. The booking engine calculates dynamic pricing (base rate × nights + cleaning/service/security fees, with weekly and monthly discount tiers), checks for date conflicts using a static Booking.hasConflict() method, and validates guest capacity against listing limits. Payment is powered by Razorpay — the backend creates a signed order, the frontend renders the Razorpay checkout, and verification is done with HMAC-SHA256 signature matching. Funds move through an escrow-style flow (held → released/refunded) with three cancellation policies. Multi-image upload uses Multer + Cloudinary with thumbnail and medium variants stored per image. The platform includes a full admin panel for user and property management with paginated search, a host analytics dashboard aggregating revenue, booking stats, and average ratings via parallel Promise.all queries, a 6-dimension review system, and a real-time notifications panel. The app is fully containerised with Docker and docker-compose, and all routes include rate limiting, Helmet security headers, express-mongo-sanitize, and input validation via express-validator.',
+    details: [
+      {
+        title: 'Backend Structure',
+        content: 'Node.js 18 + Express.js 4.18\nController → Service → Model pattern\n11 route groups, all prefixed /api/\nGlobal error handler middleware\nWinston + daily-rotate-file logging\nRate limiting + Helmet + CORS',
+      },
+      {
+        title: 'Frontend Structure',
+        content: 'React 18 + Vite 5 + TailwindCSS 3\nReact Router v6 with protected routes\nAuthContext + ThemeContext (dark mode)\nPendingAction pattern (redirect after login)\nAxios with base URL config\nReact Hot Toast + Lucide icons',
+      },
+      {
+        title: 'Database Models (9 total)',
+        content: 'User: name, email, password, role, avatar, phone, bio, hostInfo, stats\nProperty: title, description, location+GeoJSON, images, pricing, details, amenities, blockedDates, ratings, status\nBooking: property, guest, host refs, checkIn/Out, pricing breakdown, payment, cancellation\nPayment: amount, status, method, razorpayOrderId, signature\nReview: ratings, comment, hostResponse\nMessage, Conversation, Notification, Favorite',
+      },
+      {
+        title: 'Key API Routes',
+        content: 'Auth: /register, /login, /refresh-token, /send-otp\nProperties: /api/properties (GET, POST, PUT, DEL)\nBookings: /api/bookings, /my-bookings, /host-bookings, /confirm, /cancel\nPayments: /create-order, /verify, /release-funds, /refund\nAdmin: /users, /properties/approve',
+      },
+      {
+        title: 'Key Features',
+        content: 'GeoJSON + 2dsphere Index for location search\nRazorpay Escrow Payment Flow\nStatic Booking.hasConflict() + Property.isAvailable()\nMongoose Virtuals\nPendingAction Auth Pattern\n9 Strategic MongoDB Indexes on Property\nCloudinary multi-size image upload\nRole-Gated Routes (frontend + backend)',
+      },
+    ],
+    image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
+    tech: [
+      'React 18',
+      'Vite',
+      'Node.js',
+      'Express.js',
+      'MongoDB',
+      'Razorpay',
+      'Cloudinary',
+      'TailwindCSS',
+      'Docker',
+      'JWT Auth',
+      'React Leaflet',
+      'Winston'
+    ],
+    github: 'https://github.com/debaprakash2021/realestate-platform',
+    live: 'https://realestate-platforms.vercel.app/',
+    featured: true,
+  },
   {
     title: 'Momentum',
     subtitle: 'Professional Video Streaming Platform',
@@ -61,6 +230,7 @@ const projects = [
 export default function Projects() {
   const sectionRef = useRef<HTMLElement>(null);
   const projectRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const [selectedProject, setSelectedProject] = useState<ProjectType | null>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -251,15 +421,22 @@ export default function Projects() {
 
                   {/* Links */}
                   <div
-                    className={`flex gap-4 ${
+                    className={`flex flex-wrap gap-4 ${
                       index % 2 === 1 ? 'lg:justify-end' : ''
                     }`}
                   >
+                    <button
+                      onClick={() => setSelectedProject(project)}
+                      className="group/link inline-flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-lime hover:text-black border border-white/10 rounded-full text-white/90 transition-all"
+                    >
+                      <Info size={16} />
+                      <span className="text-sm font-medium">View Details</span>
+                    </button>
                     <a
                       href={project.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group/link inline-flex items-center gap-2 text-white/80 hover:text-lime transition-colors"
+                      className="group/link inline-flex items-center gap-2 px-4 py-2 text-white/80 hover:text-lime transition-colors"
                     >
                       <Github size={18} />
                       <span className="text-sm">View Code</span>
@@ -292,6 +469,11 @@ export default function Projects() {
           </a>
         </div>
       </div>
+      
+      <ProjectModal 
+        project={selectedProject} 
+        onClose={() => setSelectedProject(null)} 
+      />
     </section>
   );
 }
