@@ -57,6 +57,18 @@ Built from scratch with performance and developer experience in mind: TypeScript
 
 ---
 
+## 🚀 Featured Projects
+
+The portfolio now highlights several enterprise-grade full-stack applications:
+- **Hospital Management System**: A comprehensive MERN operations platform with role-based dashboards (Admin, Doctor, Patient, Receptionist), real-time Socket.IO notifications, and JWT-backed scoped views.
+- **AasaMedChem**: A production B2B pharmaceutical supply-chain platform featuring a custom server-side unit conversion engine with microgram-precision, built on Next.js 16 and Neon PostgreSQL.
+- **EduSync**: A robust EdTech platform backend with 105 files following a strict Layered Architecture, handling live classes (Agora), automated invoice generation, and Razorpay escrow.
+- **RealEstate Platform**: An Airbnb-style property booking engine incorporating MongoDB geospatial `$near` queries, dynamic pricing with conflict resolution, and multi-image Cloudinary uploads.
+
+These projects feature interactive modals detailing the tech stack, database schemas, and architectural flow.
+
+---
+
 ## 🛠️ Tech Stack
 
 ### Frontend
