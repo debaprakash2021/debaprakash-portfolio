@@ -197,13 +197,13 @@ export default function Skills() {
           ].map((stat, index) => (
             <div
               key={stat.label}
-              className="text-center p-6 rounded-2xl border border-white/5 bg-white/[0.02] hover:border-lime/30 transition-colors duration-300"
+              className="text-center p-4 sm:p-6 rounded-2xl border border-white/5 bg-white/[0.02] hover:border-lime/30 transition-colors duration-300"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <div className="text-3xl lg:text-4xl font-bold text-gradient mb-2">
+              <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gradient mb-2">
                 {stat.value}
               </div>
-              <div className="text-white/50 text-sm">{stat.label}</div>
+              <div className="text-white/50 text-xs sm:text-sm">{stat.label}</div>
             </div>
           ))}
         </div>

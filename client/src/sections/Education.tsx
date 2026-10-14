@@ -144,9 +144,7 @@ export default function Education() {
             {educationData.map((edu, index) => (
               <div
                 key={edu.institution}
-                className={`relative grid lg:grid-cols-2 gap-8 items-center ${
-                  index % 2 === 1 ? 'lg:direction-rtl' : ''
-                }`}
+                className="relative grid lg:grid-cols-2 gap-8 items-center"
               >
                 {/* Timeline Dot */}
                 <div
@@ -156,7 +154,7 @@ export default function Education() {
                 {/* Content */}
                 <div
                   className={`edu-card ml-16 lg:ml-0 ${
-                    index % 2 === 1 ? 'lg:order-2 lg:pl-12' : 'lg:pr-12 lg:text-right'
+                    index % 2 === 1 ? 'lg:order-2 lg:pl-12' : 'lg:pr-12'
                   }`}
                 >
                   <div

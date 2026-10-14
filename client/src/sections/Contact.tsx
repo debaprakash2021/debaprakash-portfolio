@@ -68,7 +68,7 @@ export default function Contact() {
       <div className="w-full px-6 lg:px-12">
         <div ref={ctaRef} className="text-center mb-20">
           <span className="inline-block text-lime text-sm font-medium tracking-wider uppercase mb-4">Get In Touch</span>
-          <h2 className="cta-text text-5xl sm:text-6xl lg:text-8xl xl:text-9xl font-bold leading-none mb-6">
+          <h2 className="cta-text text-4xl sm:text-5xl md:text-6xl lg:text-8xl xl:text-9xl font-bold leading-none mb-6">
             <span className="text-gradient">Let's Talk</span>
           </h2>
           <p className="text-white/60 max-w-xl mx-auto text-lg">
@@ -85,9 +85,9 @@ export default function Contact() {
                 <div className="w-12 h-12 rounded-xl bg-lime/10 flex items-center justify-center group-hover:scale-110 transition-transform">
                   <Mail className="w-6 h-6 text-lime" />
                 </div>
-                <div className="flex-1">
+                <div className="flex-1 min-w-0">
                   <p className="text-sm text-white/50 mb-1">Email</p>
-                  <p className="text-white font-medium">debaprakashjena2021@gmail.com</p>
+                  <p className="text-white font-medium break-all text-sm sm:text-base">debaprakashjena2021@gmail.com</p>
                 </div>
                 <button onClick={copyEmail} className="p-2 rounded-lg bg-white/5 hover:bg-lime/20 transition-colors" title="Copy email">
                   {copied ? <Check className="w-5 h-5 text-lime" /> : <Copy className="w-5 h-5 text-white/50" />}

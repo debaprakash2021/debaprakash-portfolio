@@ -196,7 +196,7 @@ export default function Certificates() {
             Key Achievements
           </h3>
 
-          <div className="achievements-grid grid sm:grid-cols-3 gap-6">
+          <div className="achievements-grid grid grid-cols-1 sm:grid-cols-3 gap-6">
             {achievements.map((achievement) => (
               <div
                 key={achievement.title}
@@ -219,7 +219,7 @@ export default function Certificates() {
 
         {/* Training Section */}
         <div className="mt-20 max-w-3xl mx-auto">
-          <div className="p-8 rounded-3xl border border-lime/20 bg-gradient-to-b from-lime/10 to-transparent">
+          <div className="p-6 sm:p-8 rounded-3xl border border-lime/20 bg-gradient-to-b from-lime/10 to-transparent">
             <div className="flex items-start gap-4">
               <div className="w-14 h-14 rounded-2xl bg-lime/20 flex items-center justify-center flex-shrink-0">
                 <Award className="w-7 h-7 text-lime" />

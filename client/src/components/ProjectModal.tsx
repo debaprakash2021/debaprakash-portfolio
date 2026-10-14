@@ -34,7 +34,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
   if (!project) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center px-4 md:px-0">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
       {/* Backdrop */}
       <div 
         className="absolute inset-0 bg-black/80 backdrop-blur-sm" 
@@ -66,7 +66,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
           <span className="inline-block text-lime text-sm font-medium tracking-wider uppercase mb-2 px-3 py-1 bg-black/50 rounded-full backdrop-blur-md border border-white/10">
             {project.subtitle}
           </span>
-          <h2 className="text-3xl md:text-5xl font-bold mb-6 text-white">
+          <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-6 text-white break-words">
             {project.title}
           </h2>
 
@@ -81,7 +81,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
             ))}
           </div>
 
-          <div className="flex gap-4 mb-10">
+          <div className="flex flex-wrap gap-3 mb-10">
             <a
               href={project.github}
               target="_blank"

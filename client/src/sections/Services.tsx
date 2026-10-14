@@ -143,7 +143,7 @@ export default function Services() {
           {services.map((service) => (
             <div
               key={service.id}
-              className={`service-card group relative p-8 rounded-3xl border ${service.borderColor} bg-gradient-to-b ${service.color} backdrop-blur-sm overflow-hidden transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl ${service.glowColor}`}
+              className={`service-card group relative p-6 sm:p-8 rounded-3xl border ${service.borderColor} bg-gradient-to-b ${service.color} backdrop-blur-sm overflow-hidden transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl ${service.glowColor}`}
               onMouseMove={(e) => handleMouseMove(e, service.id)}
               onMouseLeave={() => setActiveService(null)}
             >

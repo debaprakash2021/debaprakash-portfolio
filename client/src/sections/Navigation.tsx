@@ -41,7 +41,7 @@ export default function Navigation() {
             : 'bg-transparent py-6'
         }`}
       >
-        <div className="w-full px-6 lg:px-12 flex items-center justify-between">
+        <div className="w-full px-4 sm:px-6 lg:px-12 flex items-center justify-between">
           {/* Logo with hollow text effect */}
           <a
             href="#hero"
@@ -49,7 +49,7 @@ export default function Navigation() {
               e.preventDefault();
               scrollToSection('#hero');
             }}
-            className="text-xl font-black tracking-tighter group"
+            className="text-base sm:text-xl font-black tracking-tighter group"
           >
             <span 
               className="transition-all duration-300 group-hover:text-shadow-glow"

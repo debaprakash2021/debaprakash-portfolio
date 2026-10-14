@@ -36,6 +36,12 @@
 }
 
 @layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
   * {
     @apply border-border;
   }
@@ -48,6 +54,24 @@
     @apply bg-background text-foreground antialiased;
     font-family: 'Inter', sans-serif;
     overflow-x: hidden;
+  }
+
+  /* Prevent images from overflowing their containers */
+  img,
+  svg,
+  video,
+  canvas {
+    max-width: 100%;
+  }
+
+  /* Prevent long words / URLs from overflowing */
+  p,
+  li,
+  td,
+  th,
+  span {
+    overflow-wrap: break-word;
+    word-break: break-word;
   }
 }
 
@@ -215,4 +239,32 @@
 ::selection {
   background: rgba(209, 226, 157, 0.3);
   color: #ffffff;
+}
+
+/* ── Reduced-motion accessibility ── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .grid-bg {
+    animation: none;
+  }
+
+  .marquee {
+    animation: none;
+  }
+
+  .breathe {
+    animation: none;
+  }
+
+  .float {
+    animation: none;
+  }
 }

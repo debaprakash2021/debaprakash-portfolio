@@ -333,9 +333,7 @@ export default function Projects() {
               <div
                 key={project.title}
                 ref={(el) => { projectRefs.current[index] = el; }}
-                className={`grid lg:grid-cols-2 gap-8 lg:gap-16 items-center ${
-                  index % 2 === 1 ? 'lg:direction-rtl' : ''
-                }`}
+                className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center"
               >
                 {/* Image */}
                 <div
