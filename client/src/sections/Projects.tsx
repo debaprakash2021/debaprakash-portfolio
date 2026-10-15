@@ -214,17 +214,7 @@ const projects: ProjectType[] = [
     live: null,
     featured: true,
   },
-  {
-    title: 'Labour Laws Portal',
-    subtitle: 'Complaint & Information System',
-    description:
-      'A full-stack complaint and information portal built with PHP and SQL. Features structured complaint submissions, tracking system, and role-based dashboards for users and administrators.',
-    image: '/project-labour.jpg',
-    tech: ['HTML5', 'CSS3', 'JavaScript', 'PHP', 'SQL', 'Apache Server'],
-    github: 'https://github.com/debaprakash2021/project',
-    live: null,
-    featured: false,
-  },
+  
 ];
 
 export default function Projects() {
